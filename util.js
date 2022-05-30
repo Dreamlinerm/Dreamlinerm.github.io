@@ -1,5 +1,5 @@
 // Convert an JSON array to gql with every element in an array
-function convertArrayToGQl(json: Array<any>) {
+function convertArrayToGQl(json) {
   let gql = "[";
   for (let i = 0; i < json.length; i++) {
     if (json[i] != null) {
@@ -19,7 +19,7 @@ function convertArrayToGQl(json: Array<any>) {
 }
 // Convert JSON to a gql query input json
 // if more datatypes are needed add more ifs and handle seperatly
-function convertJsonToGQl(json: any) {
+function convertJsonToGQl(json) {
   if (json != null && Array.isArray(json)) {
     return convertArrayToGQl(json) + "\n";
   } else if (typeof json === "string") {
@@ -51,4 +51,3 @@ function convertJsonToGQl(json: any) {
   }
   return json + `\n`;
 }
-export { convertJsonToGQl };

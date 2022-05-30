@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Example</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Example</h1>
+    <p>This is an example of a simple HTML page.</p>
+    <p id="conversion"></p>
+    <script src="./util.js"></script>
+    <script>
+      const json = {
+        name: "John",
+        age: 30,
+        city: "New York",
+        dead: false,
+        friends: ["Sally", "Tom", "Harry"],
+      };
+      const gql = convertJsonToGQl(json);
+      document.getElementById("conversion").innerHTML = gql;
+    </script>
+  </body>
+</html>
