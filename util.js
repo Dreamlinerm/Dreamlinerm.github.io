@@ -20,7 +20,7 @@ function convertArrayToGQl(json) {
   return gql;
 }
 // Convert JSON to a gql query input json
-// if more datatypes are needed add more ifs and handle seperatly
+// if more datatypes are needed add more ifs and handle separately
 function convertJsonToGQl(json) {
   if (json != null && Array.isArray(json)) {
     return convertArrayToGQl(json) + "\n";
@@ -29,10 +29,7 @@ function convertJsonToGQl(json) {
   } else if (!isNaN(json)) {
     return json + `\n`;
     // tests if json is a json object
-  } else if (
-    JSON.stringify(json).startsWith("{") &&
-    JSON.stringify(json).endsWith("}")
-  ) {
+  } else if (typeof json === "object") {
     let gql = "{\n";
     let index = 0;
     for (let key in json) {
