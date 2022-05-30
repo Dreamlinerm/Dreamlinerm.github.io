@@ -1,11 +1,14 @@
 <html>
   <head>
-    <title>Example</title>
+    <title>JSON to gql converter</title>
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1>Example</h1>
-    <p>This is an example of a simple HTML page.</p>
+    <h1>JSON to gql converter:</h1>
+    <p>JSON input:</p>
+    <textarea id="JSON" rows="4" cols="50"></textarea>
+    <br></bt><button onclick="convert()">convert to gql</button>
+    <p>This is the gql Query:</p>
     <p id="conversion"></p>
     <script src="./util.js"></script>
     <script>
@@ -17,7 +20,13 @@
         friends: ["Sally", "Tom", "Harry"],
       };
       const gql = convertJsonToGQl(json);
+      document.getElementById("JSON").innerHTML = JSON.stringify(json);
       document.getElementById("conversion").innerHTML = gql;
+      function convert(){
+        const json = JSON.parse(document.getElementById("JSON").value);
+        const gql = convertJsonToGQl(json);
+        document.getElementById("conversion").innerHTML = gql;
+      }
     </script>
   </body>
 </html>
