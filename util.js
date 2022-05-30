@@ -1,16 +1,18 @@
 // Convert an JSON array to gql with every element in an array
 function convertArrayToGQl(json) {
+  let k = ",";
   let gql = "[";
   for (let i = 0; i < json.length; i++) {
+    if (i === json.length - 1) k = "";
     if (json[i] != null) {
       if (json[i] != null && Array.isArray(json[i])) {
-        gql += convertArrayToGQl(json[i]) + ",";
+        gql += convertArrayToGQl(json[i]) + k;
       } else if (typeof json[i] === "string") {
-        gql += `"` + json[i] + `",`;
+        gql += `"` + json[i] + `"` + k;
       } else if (!isNaN(json[i])) {
-        gql += json[i] + `,`;
+        gql += json[i] + k;
       } else {
-        gql += convertJsonToGQl(json[i]) + `,`;
+        gql += convertJsonToGQl(json[i]) + k;
       }
     }
   }

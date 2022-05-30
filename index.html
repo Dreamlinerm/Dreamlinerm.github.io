@@ -6,10 +6,11 @@
   <body>
     <h1>JSON to gql converter:</h1>
     <p>JSON input:</p>
-    <textarea id="JSON" rows="4" cols="50"></textarea>
-    <br></bt><button onclick="convert()">convert to gql</button>
+    <textarea id="JSON" rows="15" cols="100"></textarea>
+    <br /><button onclick="convert()">convert to gql</button>
     <p>This is the gql Query:</p>
-    <p id="conversion"></p>
+    <textarea id="conversion" rows="15" cols="100"></textarea>
+    <br /><button onclick="copyToClipboard()">Copy to Clipboard</button>
     <script src="./util.js"></script>
     <script>
       const json = {
@@ -22,10 +23,24 @@
       const gql = convertJsonToGQl(json);
       document.getElementById("JSON").innerHTML = JSON.stringify(json);
       document.getElementById("conversion").innerHTML = gql;
-      function convert(){
+      function convert() {
         const json = JSON.parse(document.getElementById("JSON").value);
         const gql = convertJsonToGQl(json);
         document.getElementById("conversion").innerHTML = gql;
+      }
+      function copyToClipboard() {
+        /* Get the text field */
+        var copyText = document.getElementById("conversion");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
       }
     </script>
   </body>
