@@ -33,7 +33,7 @@ function convertJsonToGQl(json) {
     JSON.stringify(json).startsWith("{") &&
     JSON.stringify(json).endsWith("}")
   ) {
-    let gql = "{";
+    let gql = "{\n";
     let index = 0;
     for (let key in json) {
       index++;
