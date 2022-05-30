@@ -6,4 +6,4 @@ FileTypes, Array,string,number,boolean are handled.
 If more Filetypes or custom ones needed, you should add more cases.
 
 # Online converter
-goto https://dreamlinerm.github.io/JSONtoGql/
+goto https://dreamlinerm.github.io/JSONtoGqlMutation/
