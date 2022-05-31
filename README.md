@@ -11,6 +11,16 @@ FileTypes:
 
 If more Filetypes or custom ones needed, you should add more cases.
 
+```
+function convertJsonToGQl(json: JSON) {
+  return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
+}
+```
+Enum Datatype is also handled in 
+
+convertJSONtoGqlEnum(json: JSON, enumValues: string[])
+
+
 # Online converter
 goto https://dreamlinerm.github.io/JSONtoGqlMutation/
 
@@ -19,10 +29,8 @@ goto https://dreamlinerm.github.io/JSONtoGqlMutation/
 If you have a json like:
 ```
  {
-  "id": "1",
   "name": "John",
   "age": 30,
-  "city": "New York",
   "dead": false,
   "friends": [
     "Sally",
@@ -35,15 +43,11 @@ If you have a json like:
   ```
   mutation {
     addPerson(
-        id: "1"
         name: "John"
         age: 30
-        city: "New York"
         dead: false
         friends: ["Sally","Tom","Harry"]
-    ){
-      id
-    }
+    ){      id    }
 }
 ```
 You can use convertJsonToGQl
