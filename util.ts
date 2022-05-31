@@ -2,6 +2,22 @@
 function convertJsonToGQl(json: JSON) {
   return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
 }
+// Convert JSON string to a gql query input json
+function convertJsonStringToGQl(json: string) {
+  return json.replace(/"([^"]+)":/g, "$1:");
+}
+
+// Convert JSON string to a gql query. input json and enumvalues is string[] of enum values
+// enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
+function convertJsonStringtoGqlEnum(json: string, enumValues: string[]) {
+  let gql = convertJsonStringToGQl(json);
+  enumValues.forEach((enumValue) => {
+    const re = new RegExp(`"` + enumValue + `"`, "g");
+    gql = gql.replace(re, `${enumValue}`);
+  });
+  return gql;
+}
+
 // Convert JSON to a gql query. input json and enumvalues is string[] of enum values
 // enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
 function convertJSONtoGqlEnum(json: JSON, enumValues: string[]) {
@@ -70,6 +86,8 @@ function convertJsonToGQlwithDatatypes(json: any) {
 }
 export {
   convertJsonToGQl,
+  convertJsonStringToGQl,
   convertJSONtoGqlEnum,
+  convertJsonStringtoGqlEnum,
   convertJsonToGQlwithDatatypes,
 };

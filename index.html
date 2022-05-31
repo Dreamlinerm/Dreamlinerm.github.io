@@ -26,9 +26,7 @@
       document.getElementById("JSON").innerHTML = JSON.stringify(json);
       document.getElementById("conversion").innerHTML = gql;
       function convert() {
-        const json = JSON.parse(document.getElementById("JSON").value);
-        const gql = convertJsonToGQl(json);
-        document.getElementById("conversion").innerHTML = gql;
+        document.getElementById("conversion").innerHTML = convertJsonStringToGQl(document.getElementById("JSON").value);
       }
       function copyToClipboard() {
         /* Get the text field */

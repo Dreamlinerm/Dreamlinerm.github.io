@@ -2,10 +2,26 @@
 function convertJsonToGQl(json) {
   return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
 }
+// Convert JSON string to a gql query input json
+function convertJsonStringToGQl(json) {
+  return json.replace(/"([^"]+)":/g, "$1:");
+}
+
+// Convert JSON string to a gql query. input json and enumvalues is string[] of enum values
+// enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
+function convertJsonStringtoGqlEnum(json, enumValues) {
+  let gql = convertJsonStringToGQl(json);
+  enumValues.forEach((enumValue) => {
+    const re = new RegExp(`"` + enumValue + `"`, "g");
+    gql = gql.replace(re, `${enumValue}`);
+  });
+  return gql;
+}
+
 // Convert JSON to a gql query. input json and enumvalues is string[] of enum values
 // enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
 function convertJSONtoGqlEnum(json, enumValues) {
-  let gql = JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
+  let gql = convertJsonToGQl(json);
   enumValues.forEach((enumValue) => {
     const re = new RegExp(`"` + enumValue + `"`, "g");
     gql = gql.replace(re, `${enumValue}`);
