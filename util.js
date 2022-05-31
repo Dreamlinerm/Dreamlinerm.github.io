@@ -5,8 +5,7 @@ function convertJsonToGQl(json) {
 function convertJSONtoGqlEnum(json, enumValues) {
   let gql = JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
   enumValues.forEach((enumValue) => {
-    const re = new RegExp(`"` + enumValue + `"`, "gi");
-    console.log(enumValue, re);
+    const re = new RegExp(`"` + enumValue + `"`, "g");
     gql = gql.replace(re, `${enumValue}`);
   });
   return gql;
