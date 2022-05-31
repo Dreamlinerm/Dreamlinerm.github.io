@@ -1,6 +1,16 @@
 function convertJsonToGQl(json) {
   return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
 }
+//   enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
+function convertJSONtoGqlEnum(json, enumValues) {
+  let gql = JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
+  enumValues.forEach((enumValue) => {
+    const re = new RegExp(`"` + enumValue + `"`, "gi");
+    console.log(enumValue, re);
+    gql = gql.replace(re, `${enumValue}`);
+  });
+  return gql;
+}
 // Convert an JSON array to gql with every element in an array
 function convertArrayToGQl(json) {
   let k = ",";
