@@ -1,3 +1,6 @@
+function convertJsonToGQl(json) {
+  return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
+}
 // Convert an JSON array to gql with every element in an array
 function convertArrayToGQl(json) {
   let k = ",";
@@ -12,7 +15,7 @@ function convertArrayToGQl(json) {
       } else if (!isNaN(json[i])) {
         gql += json[i] + k;
       } else {
-        gql += convertJsonToGQl(json[i]) + k;
+        gql += convertJsonToGQlwithDatatypes(json[i]) + k;
       }
     }
   }
@@ -20,8 +23,8 @@ function convertArrayToGQl(json) {
   return gql;
 }
 // Convert JSON to a gql query input json
-// if more datatypes are needed add more ifs and handle separately
-function convertJsonToGQl(json) {
+// if more datatypes are needed add more cases and handle separately
+function convertJsonToGQlwithDatatypes(json) {
   if (json != null && Array.isArray(json)) {
     return convertArrayToGQl(json) + "\n";
   } else if (typeof json === "string") {
@@ -42,7 +45,7 @@ function convertJsonToGQl(json) {
       } else if (!isNaN(json[key])) {
         gql += key + `: ` + json[key] + `\n`;
       } else {
-        gql += key + `: ` + convertJsonToGQl(json[key]) + `\n`;
+        gql += key + `: ` + convertJsonToGQlwithDatatypes(json[key]) + `\n`;
       }
     }
     gql += "}";
