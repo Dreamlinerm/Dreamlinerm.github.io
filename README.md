@@ -1,5 +1,5 @@
-# JSONtoGQL
-Method convertJsonToGQl, wich converts a JSON to a graphql mutation.
+# JSON to GraphQL
+Method convertJsonToGQl, wich converts a JSON to a GraphQL mutation.
 
 FileTypes:
     string,
