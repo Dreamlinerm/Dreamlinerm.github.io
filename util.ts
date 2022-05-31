@@ -1,7 +1,9 @@
+// Convert JSON to a gql query input json
 function convertJsonToGQl(json: JSON) {
   return JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
 }
-//   enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
+// Convert JSON to a gql query. input json and enumvalues is string[] of enum values
+// enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
 function convertJSONtoGqlEnum(json: JSON, enumValues: string[]) {
   let gql = JSON.stringify(json).replace(/"([^"]+)":/g, "$1:");
   enumValues.forEach((enumValue) => {
@@ -10,6 +12,10 @@ function convertJSONtoGqlEnum(json: JSON, enumValues: string[]) {
   });
   return gql;
 }
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// doesn't use regex
+
 // Convert an JSON array to gql with every element in an array
 function convertArrayToGQl(json: any) {
   let k = ",";
@@ -64,6 +70,6 @@ function convertJsonToGQlwithDatatypes(json: any) {
 }
 export {
   convertJsonToGQl,
-  convertJsonToGQlwithDatatypes,
   convertJSONtoGqlEnum,
+  convertJsonToGQlwithDatatypes,
 };
