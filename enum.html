@@ -1,18 +1,20 @@
 <!DOCTYPE html>
   <head>
     <link rel="icon" type="image/ico" sizes="32x32" href="favicon.ico">
-    <title>JSON to gql converter</title>
+    <title>JSON to gql converter considering enum</title>
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1>JSON to gql mutation converter:</h1>
+    <h1>JSON to gql mutation converter considering enum:</h1>
+    <p>Enum input:</p>
+    <textarea id="Enum" rows="15" cols="100"></textarea>
     <p>JSON input:</p>
     <textarea id="JSON" rows="15" cols="100"></textarea>
     <br /><button onclick="convert()">convert to gql</button>
     <p>This is the gql Query:</p>
     <textarea id="conversion" rows="15" cols="100"></textarea>
     <br /><button onclick="copyToClipboard()">Copy to Clipboard</button>
-    <a href="enum.html">Goto gql Converter with enum</a>
+    <a href="index.html">Goto gql Converter</a>
     <script src="./util.js"></script>
     <script>
       const json = {
@@ -20,14 +22,22 @@
         age: 30,
         city: "New York",
         dead: false,
-        friends: ["Sally", "Tom", "Harry"],
+        friends: ["Sally"],
+        type1: "Star",
+        type2: "Textarea",
+        type3: "Radio",
+        type4: "Dropdown",
+        type5: "Location"
       };
-      const gql = convertJsonToGQl(json);
+      const enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
+      document.getElementById("Enum").innerHTML = enumValues;
+      const gql = convertJSONtoGqlEnum(json, enumValues);
       document.getElementById("JSON").innerHTML = JSON.stringify(json);
       document.getElementById("conversion").innerHTML = gql;
       function convert() {
+        const enums = document.getElementById("Enum").value.split(",");
         const json = JSON.parse(document.getElementById("JSON").value);
-        const gql = convertJsonToGQl(json);
+        const gql = convertJSONtoGqlEnum(json,enums);
         document.getElementById("conversion").innerHTML = gql;
       }
       function copyToClipboard() {
