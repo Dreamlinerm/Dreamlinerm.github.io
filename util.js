@@ -9,7 +9,7 @@ function convertJsonStringToGQl(json) {
 
 // Convert JSON string to a gql query. input json and enumvalues is string[] of enum values
 // enumValues = ["Star", "Textarea", "Radio", "Dropdown", "Location"];
-function convertJsonStringtoGqlEnum(json, enumValues) {
+function convertJsonStringToGqlEnum(json, enumValues) {
   let gql = convertJsonStringToGQl(json);
   enumValues.forEach((enumValue) => {
     const re = new RegExp(`"` + enumValue + `"`, "g");

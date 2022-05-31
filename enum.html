@@ -36,7 +36,7 @@
       document.getElementById("conversion").innerHTML = gql;
       function convert() {
         const enums = document.getElementById("Enum").value.split(",");
-        const gql = convertJsonStringtoGqlEnum(document.getElementById("JSON").value,enums);
+        const gql = convertJsonStringToGqlEnum(document.getElementById("JSON").value,enums);
         document.getElementById("conversion").innerHTML = gql;
       }
       function copyToClipboard() {
